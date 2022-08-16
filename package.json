@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsc": "node_modules/typescript/bin/tsc"
   },
   "dependencies": {
+    "ts-node": "^10.9.1",
     "vue": "^3.2.37"
   },
   "devDependencies": {

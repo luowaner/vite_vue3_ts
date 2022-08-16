@@ -19,36 +19,59 @@ Math.random()
 
 
 /**
- *  TS 枚举类型  (表示一组明确可选类型)
- *  作用: 提高代码可读性
- * 语法:  enum  枚举名 {
- *          枚举1=枚举值, 
- *          枚举2=枚举值,
- * }
- * ts中其他类型会在编译为js代码是自动移除  只有枚举类型会保留 最终依然编译为js代码
+ * TS  接口类型
+ * interface 和 type 都可以用于定于对象结构
  */
 
-/* 
-    枚举 -- 基本类型
-    需求:用户性别  男 女 未知
-        后端参数   1  0  -1
-*/
-enum Gender {
-    girl = 0, //可以指定为数值 或者字符串
-    boy = 1,
-    unKnown = -1
+// interface vs type
+interface ObjType {
+    name:string
+    age:number
+}
+type ObjType2 = {
+    name:string
+    age:number
 }
 
-const query = {
-    gender : Gender.boy
+/**
+ * TS  接口继承 extends
+ */
+interface Point2D{
+    x:number
+    y:number
+}
+/* interface Point3D{
+    x:number
+    y:number
+    z:number
+} */
+
+//extends 继承
+interface Point3D extends Point2D {
+    z:number
+}
+// 测试结果 实现继承
+let obj : Point3D = {
+    x:10,
+    y:20,
+    z:20
 }
 
-console.log(query.gender,'性别参数');
+/**
+ *   type 结合 & 实现继承
+ *   & 符号可以让 type 也实现类似 interface 继承效果
+ */
 
-// 枚举 -- 数字枚举
-// 枚举的成员是有值的 默认为 从 0 开始自增的数值 称为数字枚举 枚举成员可以初始化值
-enum Gender2 {
-    girl, //枚举如果没有赋值 默认为从0开始自增的数值
-    boy,
-    unKnown
+type P2D = {
+    x:number 
+    y:number
+}
+
+type P3D = P2D & {Z : number}
+
+// 测试结果  type 结合 & 实现继承
+let obj2 : P3D = {
+    x:1,
+    y:2,
+    Z:3
 }
